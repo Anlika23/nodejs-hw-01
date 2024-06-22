@@ -18,14 +18,14 @@ const writeContactsToFile = async (contacts) => {
     try {
         await fs.writeFile(path.resolve(PATH_DB), JSON.stringify(contacts, null, 2), 'utf8');
     } catch (error) {
-        console.erroe ('Error writing contacts to file:', error);
+        console.error('Error writing contacts to file:', error);
     }
 };
 
 export const addOneContact = async () => {
-    const exitstingContacts = await readContactsFromFile();
-    const newContacts = createFakeContact();
-    const updatedContacts = [...exitstingContacts, newContacts];
+    const existingContacts = await readContactsFromFile();
+    const newContact = createFakeContact();
+    const updatedContacts = [...existingContacts, newContact];
     await writeContactsToFile(updatedContacts);
     console.log('Successfully added one new contact.');
 
